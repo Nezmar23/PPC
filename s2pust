@@ -1,0 +1,11 @@
+elinks $(more w2page) > elzit
+elinks $(more wpage |grep -m1 plyn) >cenypl
+more elzit |grep -A 25 Hod >t2abul
+more elzit |grep -m1 PEAK >>t2abul
+rm elzit
+ted=$(date "+%d")
+zitra=$((ted+1))$(date "+.%m.%Y")
+echo $zitra
+more cenypl |grep -A 39 Vysledky |grep $zitra >>t2abul
+rm cenypl
+more t2abul
