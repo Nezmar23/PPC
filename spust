@@ -1,10 +1,4 @@
 elinks $(more wpage |grep -m1 elekt) >cenyel
-elinks $(more wpage |grep -m1 plyn) >cenypl
 more cenyel |grep -A 25 Hod >tabul
 rm cenyel
-dnes=$(date "+%d.%m.%Y")
-more cenypl |grep -A 39 Vysledky |grep $dnes >>tabul
-date "+%H:%M" >>depl
-more cenypl |grep -A 39 Vysledky |grep $dnes >>depl
-rm cenypl
 more tabul
