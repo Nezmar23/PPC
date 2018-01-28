@@ -1,0 +1,12 @@
+date "+%H:%M" |toilet -f wideterm
+elinks $(more wpage |grep -m1 plyn) >cenypl
+dnes=$(date "+%d.%m.%Y")
+hodnota=$(more cenypl |grep -A 39 Vysledky |grep $dnes) 
+dneska=${hodnota:0:15}
+cenaDnes=${hodnota:25:15}
+echo $dneska$cenaDnes
+den=$(date "+%d")
+zitra=$(($den+1))
+
+echo $zitra"."$(date "+%m.%Y")
+rm cenypl
