@@ -1,3 +1,4 @@
+clear
 elinks $(more wpage |grep -m1 elekt) >cenyel
 more cenyel |grep -A 25 Hod >tabul
 rm cenyel

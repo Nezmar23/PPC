@@ -1,12 +1,28 @@
+clear
 date "+%H:%M" |toilet -f wideterm
 elinks $(more wpage |grep -m1 plyn) >cenypl
 dnes=$(date "+%d.%m.%Y")
+
+
 hodnota=$(more cenypl |grep -A 39 Vysledky |grep $dnes) 
 dneska=${hodnota:0:15}
 cenaDnes=${hodnota:25:15}
-echo $dneska$cenaDnes
-den=$(date "+%d")
-zitra=$(($den+1))
+echo $dneska$cenaDnes |toilet -f wideterm
 
-echo $zitra"."$(date "+%m.%Y")
+
+den=$(date "+%d")
+zitra=$(($den+1))"."$(date "+%m.%Y")
+hodnota=$(more cenypl |grep -A 39 Vysledky |grep $zitra)
+zejtra=${hodnota:0:15}
+cenaZejtra=${hodnota:25:15}
+
+elinks $(more w2page) |grep -m1 PEAK  >peak
+
+Peak=$(more peak)
+Peak=${Peak:16:5}
+echo $zejtra$cenaZejtra"     PEAK: " $Peak |toilet -f wideterm
+
+
+
+rm peak
 rm cenypl
