@@ -2,4 +2,25 @@ clear
 elinks $(more wpage |grep -m1 elekt) >cenyel
 more cenyel |grep -A 25 Hod >tabul
 rm cenyel
-more tabul
+line=$(more tabul |grep -A 1 Hod)
+line=${line:3:3}"  -   "${line:25:4}
+echo $line
+
+x=0
+until test $x = 24
+do
+x=$(($x+1))
+line=$(grep [[:space:]]$x[[:space:]] tabul)
+k=${#line}
+
+if test  $k -eq 0 
+then
+	echo !! Pro dnesek vse !
+	break
+else
+	prumer=${line:25:2}
+	min=${line:36:2}
+	max=${line:46:2}
+	 echo " "${line:3:6}" = "${line:25:5}"  "$(($min-$prumer))"  +"$(($max-$prumer))
+fi
+done
