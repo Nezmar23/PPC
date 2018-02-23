@@ -2,4 +2,27 @@ clear
 elinks $(more w2page) > elzit
 more elzit |grep -A 25 Hod >t2abul
 rm elzit
-more t2abul
+line=$(more t2abul |grep -A 1 Hod)
+line=${line:3:3}"  -   "${line:10:9}
+echo $line
+
+x=0
+until test $x = 24
+do
+x=$(($x+1))
+line=$(grep [[:space:]]$x[[:space:]] t2abul)
+k=${#line}
+
+if test  $k -eq 0
+then
+        echo !! Pro dnesek vse !
+        break
+else
+       # prumer=${line:25:2}
+       # min=${line:36:2}
+       #  max=${line:46:2}
+         echo " "${line:3:6}" = "${line:10:5}
+	 
+fi
+done
+#more t2abul
